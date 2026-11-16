@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FINORA — Personal Cashflow & Budget OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="fin-topbar">
+    <div class="fin-wrap">
+      <div class="fin-brand">
+        <span class="fin-dot"></span>
+        <strong>FINORA</strong>
+      </div>
+      <div class="fin-actions">
+        <a href="[YOUR PORTFOLIO URL]" target="_blank" rel="noopener" class="fin-portfolio">Developer Portfolio →</a>
+        <button class="fin-btn-ghost" id="finThemeBtn">Dark Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="fin-container">
+    <!-- Net Worth & Cashflow Summary -->
+    <section class="balance-strip">
+      <div class="balance-hero">
+        <span class="label-sm">NET LIQUID BALANCE</span>
+        <h1 class="mono-num" id="netBalance">$0.00</h1>
+        <p class="cashflow-note">Automated LocalStorage Ledger • November 2026</p>
+      </div>
+      <div class="summary-cards">
+        <div class="stat-box">
+          <span class="label-sm">MONTHLY INCOME</span>
+          <strong class="mono-num income-txt" id="totalIncome">+$0.00</strong>
+        </div>
+        <div class="stat-box">
+          <span class="label-sm">MONTHLY EXPENSES</span>
+          <strong class="mono-num expense-txt" id="totalExpense">-$0.00</strong>
+        </div>
+        <div class="stat-box">
+          <span class="label-sm">SAVINGS RATE</span>
+          <strong class="mono-num" id="savingsRate">0%</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main 2-Column Workspace -->
+    <div class="fin-grid">
+      <!-- Left Column: Entry Form + Ledger -->
+      <div class="fin-col-main">
+        <section class="card-block">
+          <h2>Record Transaction</h2>
+          <form id="txForm" class="tx-form">
+            <input type="text" id="txTitle" required placeholder="Merchant or source (e.g. Client Retainer, Groceries)" />
+            <input type="number" id="txAmount" step="0.01" min="0.01" required placeholder="Amount ($)" />
+            <select id="txType">
+              <option value="expense">Expense (-)</option>
+              <option value="income">Income (+)</option>
+            </select>
+            <select id="txCategory">
+              <option value="Housing">Housing</option>
+              <option value="Food & Dining">Food &amp; Dining</option>
+              <option value="Software & Tech">Software &amp; Tech</option>
+              <option value="Transport">Transport</option>
+              <option value="Salary & Freelance">Salary &amp; Freelance</option>
+            </select>
+            <button type="submit" class="btn-emerald">Log Entry</button>
+          </form>
+        </section>
+
+        <section class="card-block">
+          <div class="block-head">
+            <h2>Transaction History</h2>
+            <select id="filterCat" class="select-sm">
+              <option value="All">All Categories</option>
+              <option value="Housing">Housing</option>
+              <option value="Food & Dining">Food &amp; Dining</option>
+              <option value="Software & Tech">Software &amp; Tech</option>
+              <option value="Transport">Transport</option>
+              <option value="Salary & Freelance">Salary &amp; Freelance</option>
+            </select>
+          </div>
+          <ul class="tx-list" id="txList"></ul>
+        </section>
+      </div>
+
+      <!-- Right Column: Analytics & Category Budgets -->
+      <div class="fin-col-side">
+        <section class="card-block">
+          <h2>Expense Breakdown</h2>
+          <div class="chart-box">
+            <canvas id="expenseChart"></canvas>
+          </div>
+        </section>
+
+        <section class="card-block">
+          <div class="block-head">
+            <h2>Monthly Category Limits</h2>
+            <span class="label-sm">UTILIZATION</span>
+          </div>
+          <div id="budgetBars" class="budget-list"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="fin-footer">
+    <span>Finora Personal Finance OS</span>
+    <span>Designed &amp; Developed by <a href="[YOUR PORTFOLIO URL]" target="_blank" rel="noopener">Jamal Aliyev</a></span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
